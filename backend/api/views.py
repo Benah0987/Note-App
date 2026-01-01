@@ -1,8 +1,9 @@
 from django.contrib.auth import get_user_model
-from rest_framework import generics
-from rest_framework.permissions import AllowAny
+from rest_framework import generics, permissions
+from rest_framework.permissions import AllowAny, IsAuthenticated
 from .serializers import UserSerializer, NoteSerializer
 from .models import Note
+
 User = get_user_model()
 
 
@@ -11,29 +12,23 @@ class CreateUserView(generics.CreateAPIView):
     serializer_class = UserSerializer
     permission_classes = [AllowAny]
 
+
 class NoteListCreateView(generics.ListCreateAPIView):
-    queryset = Note.objects.all()
     serializer_class = NoteSerializer
-    permission_classes = [isAuthenticated]
+    permission_classes = [IsAuthenticated]
 
     def get_queryset(self):
-        user =self.request.user
-        return  Note.objects.filter(author=user)
-    
+        user = self.request.user
+        return Note.objects.filter(author=user)
+
     def perform_create(self, serializer):
-        if serializer.is_valid():
-            serializer.save(author=self.request.user)
-        else:
-            print(serializer.errors)
+        serializer.save(author=self.request.user)
+
 
 class NoteDeleteView(generics.DestroyAPIView):
-    queryset = Note.objects.all()
     serializer_class = NoteSerializer
-    permission_classes = [permissions.IsAuthenticated]
+    permission_classes = [IsAuthenticated]
 
     def get_queryset(self):
-        """
-        Ensure users can only delete their own notes
-        """
         user = self.request.user
         return Note.objects.filter(author=user)

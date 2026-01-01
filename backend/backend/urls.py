@@ -17,6 +17,9 @@ urlpatterns = [
     path("api/token/", TokenObtainPairView.as_view(), name="get_token"),
     path("api/token/refresh/", TokenRefreshView.as_view(), name="refresh"),
 
+    # App-level API routes (notes, etc.)
+    path("api/", include("api.urls")),
+
     # DRF browsable API login/logout
     path("api-auth/", include("rest_framework.urls")),
 ]
