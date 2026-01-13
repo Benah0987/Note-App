@@ -11,6 +11,15 @@ class CreateUserView(generics.CreateAPIView):
     queryset = User.objects.all()
     serializer_class = UserSerializer
     permission_classes = [AllowAny]
+    
+    def post(self, request, *args, **kwargs):
+        print("=" * 50)
+        print("DEBUG: CreateUserView called")
+        print(f"Permission classes: {self.permission_classes}")
+        print(f"Request data: {request.data}")
+        print(f"Request headers: {request.headers}")
+        print("=" * 50)
+        return super().post(request, *args, **kwargs)
 
 
 class NoteListCreateView(generics.ListCreateAPIView):
