@@ -1,51 +1,57 @@
 # 📝 Note-App
 
-> A full-stack notes application built with **Django REST Framework** and **React**.  
-> Allows user registration, JWT authentication, and personal notes management.
+> A full-stack notes application built with **Django REST Framework** (backend) and **React** (frontend).  
+> Users can register, log in, and manage their personal notes.
 
 ---
 
 ## 🚀 Features
 
-- **User Registration** – Create a new account
-- **JWT Authentication** – Secure login and token refresh
-- **Notes Management** – Authenticated users can:
-  - List their notes
+- **User Registration & Login** with JWT authentication
+- **Notes Management**:
+  - List your notes
   - Create new notes
-  - Delete their own notes
-- **Permissions**
+  - Delete your own notes
+- **Permissions**:
   - Registration is public
   - Notes endpoints require authentication
 
 ---
 
-## 🖥 Project Structure
+## 📁 Project Structure
 
 Note-App/
-├── backend/ # Django API backend
-├── frontend/ # React app
-├── venv/ # Python virtual environment (ignored in git)
+├── backend/ # Django REST Framework API
+├── frontend/ # React frontend
+├── assets/ # Images used in README
+│ ├── login.png
+│ └── home.png
+├── README.md
 ├── .gitignore
-└── README.md
+└── requirements.txt
 
 
 ---
 
-## 📦 Prerequisites
+## 🖥 Frontend Preview
 
-- Python 3.8+
-- Node.js & npm (or yarn)
-- Git
+### Login Page
+![Login Page](assets/login.png)
+
+### Home Page / Notes List
+![Home Page](assets/home.png)
+
+> Add more screenshots to this folder (`assets/`) as needed.
 
 ---
 
 ## ⚡ Backend Setup (Django)
 
-1. Navigate to the backend folder:
+1. Go to the backend folder:
 
 ```bash
 cd backend
-Create and activate a virtual environment:
+Create and activate a Python virtual environment:
 
 python -m venv venv
 # macOS / Linux
@@ -61,10 +67,10 @@ python manage.py migrate
 Run the development server:
 
 python manage.py runserver
-The API will be available at: http://localhost:8000
+API available at: http://localhost:8000
 
 ⚡ Frontend Setup (React)
-Navigate to the frontend folder:
+Go to the frontend folder:
 
 cd frontend
 Install dependencies:
@@ -72,19 +78,19 @@ Install dependencies:
 npm install
 # or
 yarn
-Run the development server:
+Start the React development server:
 
 npm start
 # or
 yarn start
-The frontend will open at: http://localhost:3000
+React app opens at: http://localhost:3000
 
-Make sure the backend is running so the frontend can fetch data.
+Make sure backend is running so the frontend can fetch data.
 
 🧪 API Endpoints
 User Registration
 POST /api/user/register/
-Request body example:
+Request body:
 
 {
   "username": "yourusername",
@@ -114,7 +120,7 @@ Header example:
 
 Authorization: Bearer <your_access_token>
 🛠 VSCode Setup Tips
-Add this in .vscode/settings.json:
+Add .vscode/settings.json:
 
 {
   "python.pythonPath": "backend/venv/bin/python",
@@ -126,4 +132,3 @@ Add this in .vscode/settings.json:
 }
 🎨 License
 MIT License – see the LICENSE file for details.
-
